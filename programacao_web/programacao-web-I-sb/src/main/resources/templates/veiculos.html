@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org/%22%3E" th:replace="~{base :: layout (~{:: main})}">
+<head>
+    <meta charset="UTF-8">
+<title>Veiculos</title>
+</head>
+<body>
+<main>
+<h1>Veículos</h1>
+
+<div>
+    <nobr>
+        <a th:href="@{/veiculo/add}">Add Veiculo</a> |
+        <a th:href="@{/}">Voltar</a>
+    </nobr>
+</div>
+<br/><br/>
+<div>
+    <table class="table">
+        <tr>
+            <th>Id</th>
+            <th>Placa</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Tipo</th>
+            <th>Disponivel</th>
+        </tr>
+        <tr th:each ="veiculo : ${veiculos}">
+            <td th:utext="${veiculo.id}">...</td>
+            <td th:utext="${veiculo.placa}">...</td>
+            <td th:utext="${veiculo.marca}">...</td>
+            <td th:utext="${veiculo.modelo}">...</td>
+            <td th:utext="${veiculo.tipo}">...</td>
+            <td th:utext="${veiculo.disponivel}">...</td>
+            <td>
+                <a class="btn btn-primary btn-sm" th:href="@{/veiculo/{veiculoId}/edit(veiculoId=${veiculo.id})}">Edit</a>
+                <a class="btn btn-danger btn-sm" th:href="@{/veiculo/{veiculoId}/delete(veiculoId=${veiculo.id})}">Delete</a>
+            </td>
+        </tr>
+    </table>
+</div>
+<br/>
+</main>
+</body>
+</html>

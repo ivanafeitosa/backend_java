@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout (~{:: main})}">
+<head>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+<main>
+<h1 th:text="${add} ? 'Cadastrar Veículo' : 'Editar Veículo'"></h1>
+<a th:href="@{/veiculos}">Voltar</a>
+<br/><br/>
+<form th:action="${add} ? @{/veiculo/add} : @{/veiculo/{veiculoId}/edit(veiculoId=${veiculo.id})}"
+      th:object="${veiculo}" th:method="${add} ? 'POST' : 'PUT'">
+
+    <div class="container">
+        <div th:if="${veiculo.id}" class="mb-3 row">
+            <label for="inputId" class="col-sm-2 col-form-label">Id</label>
+            <div class="col-sm-3">
+                <input type="text" th:readonly="${add} ? 'false' : 'true'" th:field="${veiculo.id}" class="form-control" id="inputId">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="inputPlaca" class="col-sm-2 col-form-label">Placa</label>
+            <div class="col-sm-3">
+                <input type="text" th:readonly="${add} ? 'false' : 'true'" th:field="*{placa}" class="form-control" id="inputPlaca">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="inputMarca" class="col-sm-2 col-form-label">Marca</label>
+            <div class="col-sm-3">
+                <input type="text" th:field="*{marca}" class="form-control" id="inputMarca">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="inputModelo" class="col-sm-2 col-form-label">Modelo</label>
+            <div class="col-sm-3">
+                <input type="text" th:field="*{modelo}" class="form-control" id="inputModelo">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="inputTipo" class="col-sm-2 col-form-label">Tipo</label>
+            <div class="col-sm-3">
+                <input type="text" th:field="*{tipo}" class="form-control" id="inputTipo">
+            </div>
+        </div>
+        <div class="d-flex">
+            <label class="col-sm-2 col-form-label">Disponível</label>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" value="true" id="flexRadioDefault1" th:field="*{disponivel}">
+                <label class="form-check-label" for="flexRadioDefault1">Sim</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" value="false" id="flexRadioDefault2" th:field="*{disponivel}" checked>
+                <label class="form-check-label" for="flexRadioDefault2">Não</label>
+            </div>
+        </div>
+
+        <div style="width:90;height:10">
+        <input type="submit" value="Salvar" class="btn btn-primary mb-3"/>
+        </div>
+
+    </div>
+</form>
+<br/>
+</main>
+</body>
+</html>
